@@ -37,6 +37,6 @@ spec:
                     path: "/"
                     backend:
                         service:
-                            name: image-ocr-tool-service
+                            name: ocr-service
                             port:
                                 number: 80
