@@ -20,7 +20,7 @@ spec:
         path: applications # Foldername
     destination:
         server: "https://kubernetes.default.svc"
-        namespace: applications # namespace where the applications will be deployed
+        namespace: default # namespace where the applications will be deployed
     syncPolicy:
         syncOptions:
             - CreateNamespace=true
