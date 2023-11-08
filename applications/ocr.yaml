@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: ocr-deployment
+spec:
+    replicas: 1 # You can adjust the number of replicas as needed
+    selector:
+        matchLabels:
+            app: ocr
+    template:
+        metadata:
+            labels:
+                app: ocr
+        spec:
+            containers:
+                - name: ocr
+                  image: drikkie/image-ocr-tool
+                  ports:
+                      - containerPort: 8080 # Port the container is listening on
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: ocr-service
+spec:
+    selector:
+        app: ocr
+    ports:
+        - port: 80
+          targetPort: 8080
