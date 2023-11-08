@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: pdf-pptx-converter
+spec:
+    replicas: 1 # You can adjust the number of replicas as needed
+    selector:
+        matchLabels:
+            app: pdf-pptx-converter
+    template:
+        metadata:
+            labels:
+                app: pdf-pptx-converter
+        spec:
+            containers:
+                - name: pdf-pptx-converter
+                  image: drikkie/pdf-pptx-converter
+                  ports:
+                      - containerPort: 8080 # Port the container is listening on
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: pdf-pptx-converter-service
+spec:
+    selector:
+        app: pdf-pptx-converter
+    ports:
+        - port: 80
+          targetPort: 8080
