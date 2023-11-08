@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-container-deployment
+spec:
+  replicas: 1 # You can adjust the number of replicas as needed
+  selector:
+    matchLabels:
+      app: my-container
+  template:
+    metadata:
+      labels:
+        app: my-container
+    spec:
+      containers:
+        - name: my-container
+          image: drikkie/under-construction-grindyoung:latest
+          ports:
+            - containerPort: 80 # Port the container is listening on
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: under-construction-gy-service
+spec:
+  selector:
+    app: my-container
+  ports:
+    - port: 80
+      targetPort: 80
+  type: LoadBalancer
