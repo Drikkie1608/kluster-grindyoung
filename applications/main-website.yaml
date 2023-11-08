@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-container-deployment
+  name: website-deployment
 spec:
   replicas: 1 # You can adjust the number of replicas as needed
   selector:
     matchLabels:
-      app: my-container
+      app: website
   template:
     metadata:
       labels:
-        app: my-container
+        app: website
     spec:
       containers:
-        - name: my-container
+        - name: website
           image: drikkie/under-construction-grindyoung:latest
           ports:
             - containerPort: 80 # Port the container is listening on
@@ -23,11 +23,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: under-construction-gy-service
+  name: website-service
 spec:
   selector:
-    app: my-container
+    app: website
   ports:
     - port: 80
       targetPort: 80
-  type: LoadBalancer
