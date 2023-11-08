@@ -7,7 +7,7 @@ metadata:
 spec:
     project: default # what are the projects?
     source:
-        repoURL: https://github.com/Drikkie1608/grind-young-under-construction-website.git
+        repoURL: https://github.com/Drikkie1608/kluster-grindyoung
         targetRevision: HEAD
         path: applications # Foldername
     destination:
