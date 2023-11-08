@@ -1,0 +1,37 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: ingress
+spec:
+    ingressClassName: nginx
+    rules:
+        - host: "grindyoung.com"
+          http:
+              paths:
+                  - pathType: Prefix
+                    path: "/"
+                    backend:
+                        service:
+                            name: under-construction-gy-service
+                            port:
+                                number: 80
+        - host: "powerpoint.grindyoung.com"
+          http:
+              paths:
+                  - pathType: Prefix
+                    path: "/"
+                    backend:
+                        service:
+                            name: pdf-pptx-converter-service
+                            port:
+                                number: 80
+        - host: "ocr.grindyoung.com"
+          http:
+              paths:
+                  - pathType: Prefix
+                    path: "/"
+                    backend:
+                        service:
+                            name: image-ocr-tool-service
+                            port:
+                                number: 80
