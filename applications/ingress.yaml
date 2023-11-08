@@ -17,7 +17,7 @@ spec:
                     path: "/"
                     backend:
                         service:
-                            name: under-construction-gy-service
+                            name: website-service
                             port:
                                 number: 80
         - host: "powerpoint.grindyoung.com"
