@@ -30,6 +30,7 @@ spec:
                             name: pdf-pptx-converter-service
                             port:
                                 number: 80
+                    client_max_body_size: "100M"
         - host: "ocr.grindyoung.com"
           http:
               paths:
