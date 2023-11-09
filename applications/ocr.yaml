@@ -29,3 +29,24 @@ spec:
     ports:
         - port: 80
           targetPort: 8080
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: ingress-ocr
+    annotations:
+        nginx.ingress.kubernetes.io/proxy-body-size: "0" # future: limit upload file size
+spec:
+    ingressClassName: nginx
+    rules:
+        - host: "ocr.grindyoung.com"
+          http:
+              paths:
+                  - pathType: Prefix
+                    path: "/"
+                    backend:
+                        service:
+                            name: ocr-service
+                            port:
+                                number: 80
