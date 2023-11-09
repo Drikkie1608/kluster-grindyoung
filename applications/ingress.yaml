@@ -8,7 +8,7 @@ kind: Ingress
 metadata:
     name: ingress
     annotations:
-        nginx.ingress.kubernetes.io/proxy-body-size: "0"
+        nginx.ingress.kubernetes.io/proxy-body-size: "0" # future: limit upload file size
 spec:
     ingressClassName: nginx
     rules:
