@@ -26,3 +26,20 @@ annotations:
 nginx.ingress.kubernetes.io/auth-type: basic
 nginx.ingress.kubernetes.io/auth-secret: basic-auth
 nginx.ingress.kubernetes.io/auth-realm: "Authentication required"
+
+## Github secret
+kubectl create secret docker-registry mysecretname --docker-server=https://ghcr.io --docker-username=mygithubusername --docker-password=mygithubreadtoken --docker-email=mygithubemail
+
+
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: name
+spec:
+  containers:
+  - name: name
+    image: ghcr.io/username/imagename:label
+    imagePullPolicy: Always
+  imagePullSecrets:
+  - name: dockerconfigjson-github-com
