@@ -14,7 +14,7 @@ spec:
         spec:
             containers:
                 - name: website
-                  image: ghcr.io/drikkie1608/grind-young-under-construction-website:sha-b4958c7
+                  image: ghcr.io/drikkie1608/grind-young-under-construction-website:sha-f7c24db
                   ports:
                       - containerPort: 80 # Port the container is listening on
             imagePullSecrets:
