@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: appke2
+spec:
+    replicas: 1 # You can adjust the number of replicas as needed
+    selector:
+        matchLabels:
+            app: appke2
+    template:
+        metadata:
+            labels:
+                app: appke2
+        spec:
+            containers:
+                - name: appke1
+                  image: daans8/app2:tagname
+                  ports:
+                      - containerPort: 80 # Port the container is listening on
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: appke2-service
+spec:
+    selector:
+        app: appke2
+    ports:
+        - port: 80
+          targetPort: 80
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: ingress-appke1
+    annotations:
+        nginx.ingress.kubernetes.io/proxy-body-size: "0" # future: limit upload file size
+        nginx.ingress.kubernetes.io/auth-type: basic
+        nginx.ingress.kubernetes.io/auth-secret: basic-auth
+        nginx.ingress.kubernetes.io/auth-realm: "Authentication required"
+spec:
+    ingressClassName: nginx
+    rules:
+        - host: "daan2.grindyoung.com"
+          http:
+              paths:
+                  - pathType: Prefix
+                    path: "/"
+                    backend:
+                        service:
+                            name: appke2-service
+                            port:
+                                number: 80
