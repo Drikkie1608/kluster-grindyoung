@@ -34,7 +34,7 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-    name: ingress-powerpoint
+    name: ingress-appke1
     annotations:
         nginx.ingress.kubernetes.io/proxy-body-size: "0" # future: limit upload file size
         nginx.ingress.kubernetes.io/auth-type: basic
